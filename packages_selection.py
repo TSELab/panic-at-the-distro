@@ -6,7 +6,7 @@ import csv
 
 
 bkc_samples_path = 'datasets/Backstabbers-Knife-Collection-main/samples'
-ecosystems = ['jcenter', 'mavencentral', 'npm', 'packagist', 'pypi', 'rubygems']
+ecosystems = ['npm','pypi', 'rubygems']
 
 packages_to_study = []
 for eco in ecosystems:
