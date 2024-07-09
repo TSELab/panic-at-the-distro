@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asttokens = "*"
+google-api-python-client = "*"
+protobuf = "==3.20.*"
+func-timeout = "*"
+gitpython = "*"
+python-magic = "*"
+rarfile = "*"
+esprima = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
