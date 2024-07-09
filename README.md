@@ -14,3 +14,8 @@ for ecosystem in ecosystems:
 }
 ```
 To run [packages selection script](https://github.com/lyvd/panic-at-the-distro/blob/main/packages_selection.py), we need to download the [Backstabbers-Knife-Collection](https://dasfreak.github.io/Backstabbers-Knife-Collection/) dataset and extract it under the [datasets](https://github.com/lyvd/panic-at-the-distro/tree/main/datasets).
+
+## Malware scanners selection
+
+We currently run the following tools
+- [cg-packj](malware-scanners/cg-packj): A modified version of [packj](https://github.com/ossillate-inc/packj) to scan local npm, Python and RubyGems packages.
