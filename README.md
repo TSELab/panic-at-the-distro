@@ -1,21 +1,29 @@
 # Code and data for the panic-at-the-distro
 
 ## Datasets selection
-The following pseudo-code illustrates our selection of historical malicious examples from the [Backstabbers-Knife-Collection](https://dasfreak.github.io/Backstabbers-Knife-Collection/) dataset. 
-```python
-# written in python/pseud-python 🙂
-ecosystems = [PyPI, npm, rubygems]
-packages_to_study = []
-for ecosystem in ecosystems:
 
-    packages = get_all_packages_in_backstabbers_from_this_ecosystem(ecosystem)
-    sampled_packages = select_10_pkgs_randomly_without_replacement(packages)
-    packages_to_study.append(sampled_packages)
-}
-```
-To run [packages selection script](https://github.com/lyvd/panic-at-the-distro/blob/main/packages_selection.py), we need to download the [Backstabbers-Knife-Collection](https://dasfreak.github.io/Backstabbers-Knife-Collection/) dataset and extract it under the [datasets](https://github.com/lyvd/panic-at-the-distro/tree/main/datasets).
+| **Dataset** |                                              **Name**                                              |                **Location in Repo**                |
+|:-----------:|:--------------------------------------------------------------------------------------------------:|:--------------------------------------------------:|
+| Dataset #1  | Historical Samples of Open Source Source Code Malware                                              | [dataset#1](datasets/dataset1_bkc)                 |
+| Dataset #2  | Historical Examples of Malicious Linux Binaries                                                    | [dataset#2](datasets/dataset2_bkc_apks)            |
+| Dataset #3  | Synthetic Examples of Open Source Source Code Malware                                              | [dataset#3](datasets/dataset3_wolfi_injected)      |
+| Dataset #4  | Synthetic Examples of Open Source Linux Binaries                                                   | [dataset#4](datasets/dataset4_wolfi_injected_apks) |
+| Dataset #5  | Synthetic example of Linux malicious source code turned into APKs                                  | [dataset#5](datasets/dataset5_linux_malware_apks)  |
+| Dataset #6  | "Over Time Datasets" For Assessing Capability Analysis Tools (capslock) - Golang only for capslock | [dataset#6](datasets/overtime)                     |
 
 ## Malware scanners selection
+We will run the following tools
 
-We currently run the following tools
-- [cg-packj](malware-scanners/cg-packj): A modified version of [packj](https://github.com/ossillate-inc/packj) to scan local npm, Python and RubyGems packages.
+|            **Tool**           |                                 **Link**                                 |       **Type**      |
+|:-----------------------------:|:------------------------------------------------------------------------:|:-------------------:|
+| ClamAV                        | https://www.clamav.net/                                                  | Binary scanner      |
+| LMD                           | https://github.com/rfxn/linux-malware-detect                             | Binary scanner      |
+| VirusTotal                    | https://www.virustotal.com/                                              | Binary scanner      |
+| cg-packj                      | [cg-packj](malware-scanners/cg-packj)                                    | Source code scanner |
+| OSSGadget OSS Detect Backdoor | https://github.com/microsoft/OSSGadget/tree/main/src/oss-detect-backdoor | Source code scanner |
+| bincapz                       | https://github.com/chainguard-dev/bincapz                                | Binary scanner      |
+| capslock                      | https://github.com/google/capslock                                       | Source code scanner |
+| bandit4mal                    | https://github.com/lyvd/bandit4mal                                       | Source code scanner |
+| guarddog                      | https://github.com/datadog/guarddog                                      | Source code scanner |
+| package-hunter                | https://gitlab.com/gitlab-org/security-products/package-hunter           | Source code scanner |
+

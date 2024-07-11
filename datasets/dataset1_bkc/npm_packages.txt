@@ -1,0 +1,10 @@
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/ethers-4/99.10.9
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/plugin-proposal-decorators/99.10.9
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/eslint-config-eslint/5.0.2
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/file-dep-poc-2
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/plugin-transform-duplicate-keys
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/cloudshelltest/99.10.9
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/call-with-safe-iteration-closing/99.10.13
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/event-hubs-track-1
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/add-position/99.10.9
+npm, datasets/Backstabbers-Knife-Collection-main/samples/npm/perf-storage-file-share/99.10.9
