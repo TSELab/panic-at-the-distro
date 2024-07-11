@@ -12,6 +12,18 @@
 | Dataset #6  | "Over Time Datasets" For Assessing Capability Analysis Tools (capslock) - Golang only for capslock | [dataset#6](datasets/overtime)                     |
 
 ## Malware scanners selection
+We will run the following tools
 
-We currently run the following tools
-- [cg-packj](malware-scanners/cg-packj): A modified version of [packj](https://github.com/ossillate-inc/packj) to scan local npm, Python and RubyGems packages.
+|            **Tool**           |                                 **Link**                                 |       **Type**      |
+|:-----------------------------:|:------------------------------------------------------------------------:|:-------------------:|
+| ClamAV                        | https://www.clamav.net/                                                  | Binary scanner      |
+| LMD                           | https://github.com/rfxn/linux-malware-detect                             | Binary scanner      |
+| VirusTotal                    | https://www.virustotal.com/                                              | Binary scanner      |
+| cg-packj                      | [cg-packj](malware-scanners/cg-packj)                                    | Source code scanner |
+| OSSGadget OSS Detect Backdoor | https://github.com/microsoft/OSSGadget/tree/main/src/oss-detect-backdoor | Source code scanner |
+| bincapz                       | https://github.com/chainguard-dev/bincapz                                | Binary scanner      |
+| capslock                      | https://github.com/google/capslock                                       | Source code scanner |
+| bandit4mal                    | https://github.com/lyvd/bandit4mal                                       | Source code scanner |
+| guarddog                      | https://github.com/datadog/guarddog                                      | Source code scanner |
+| package-hunter                | https://gitlab.com/gitlab-org/security-products/package-hunter           | Source code scanner |
+
