@@ -1,0 +1,10 @@
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/auto-localize
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/ardm_sqlite-adapter/1.2.0
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/logstash_codec-cloudfront
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/murmuring-spider/0.0.2
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/aastra-xml_api
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/indonesian-province
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/abbyy_cloud
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/beerdb-api/0.1.1
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/activemerchant_clickandbuy
+rubygems, datasets/Backstabbers-Knife-Collection-main/samples/rubygems/moving-average/0.1.1
