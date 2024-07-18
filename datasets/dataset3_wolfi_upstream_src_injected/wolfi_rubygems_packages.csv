@@ -1,0 +1,11 @@
+Wolfi package,YAML File,Upstream URL
+ruby3.2-oj,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/ruby3.2-oj.yaml,https://github.com/ohler55/oj
+fluent-plugin-label-router,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/fluent-plugin-label-router.yaml,https://github.com/kube-logging/fluent-plugin-label-router
+fluent-plugin-cloudwatch-logs,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/fluent-plugin-cloudwatch-logs.yaml,https://github.com/fluent-plugins-nursery/fluent-plugin-cloudwatch-logs.git
+ruby3.2-net-imap,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/ruby3.2-net-imap.yaml,https://github.com/ruby/net-imap 
+ruby3.2-strptime,https://github.com/wolfi-dev/os/blob/16a679fcebc86c566705083bcf4a0bfd957305f5/ruby3.2-strptime.yaml,https://github.com/nurse/strptime.git
+ruby3.2-public_suffix,https://github.com/wolfi-dev/os/blob/16a679fcebc86c566705083bcf4a0bfd957305f5/ruby3.2-public_suffix.yaml,https://github.com/weppos/publicsuffix-ruby
+fluent-plugin-out-http,https://github.com/wolfi-dev/os/blob/16a679fcebc86c566705083bcf4a0bfd957305f5/fluent-plugin-out-http.yaml,https://github.com/fluent-plugins-nursery/fluent-plugin-out-http.git
+ruby3.2-aws-sdk-kms,https://github.com/wolfi-dev/os/blob/16a679fcebc86c566705083bcf4a0bfd957305f5/ruby3.2-aws-sdk-kms.yaml,https://github.com/aws/aws-sdk-ruby
+ruby3.2-serverengine,https://github.com/wolfi-dev/os/blob/16a679fcebc86c566705083bcf4a0bfd957305f5/ruby3.2-serverengine.yaml,https://github.com/fluent/serverengine.git
+treetop,https://github.com/wolfi-dev/os/blob/16a679fcebc86c566705083bcf4a0bfd957305f5/ruby3.2-treetop.yaml,https://github.com/cjheath/treetop
