@@ -1,0 +1,11 @@
+Wolfi package,YAML File,Upstream URL
+yamlint,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-pbr.yaml,https://files.pythonhosted.org/packages/source/p/pbr/pbr-6.0.0.tar.gz
+smartypants,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/smartypants.yaml,https://github.com/leohemsted/smartypants.py
+license-expression,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-license-expression.yaml,https://github.com/nexB/license-expression
+apitools,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-google-apitools.yaml,https://github.com/google/apitools
+python-webencodings,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-webencodings.yaml,https://github.com/gsnedders/python-webencodings
+py3-psycopg2,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-psycopg2.yaml,https://github.com/psycopg/psycopg2
+py3-decorator,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-decorator.yaml,https://github.com/micheles/decorator
+py3-minimal-snowplow-tracker,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-minimal-snowplow-tracker.yaml,https://github.com/snowplow/snowplow-python-tracker
+py3-deprecation,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-deprecation.yaml,https://github.com/briancurtin/deprecation
+websockify,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/websockify.yaml,https://github.com/novnc/websockify

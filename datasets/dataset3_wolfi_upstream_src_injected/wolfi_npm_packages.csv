@@ -1,0 +1,11 @@
+Wolfi package,YAML File,Upstream URL
+npm-async,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/npm-async.yaml,https://www.npmjs.com/package/async
+eslint,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/eslint.yaml,https://github.com/eslint/eslint
+jellyfin-web,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/jellyfin-web.yaml,https://github.com/jellyfin/jellyfin-web
+policy-reporter-ui,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/kyverno-policy-reporter-ui.yaml,https://github.com/kyverno/policy-reporter-ui
+npm-lodash,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/npm-lodash.yaml,https://www.npmjs.com/package/lodash
+playwright,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/playwright.yaml,https://www.npmjs.com/package/playwright
+node-gyp,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/node-gyp.yaml,https://www.npmjs.com/package/node-gyp
+TypeScript,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/typescript.yaml,https://github.com/microsoft/TypeScript
+renovate,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/renovate.yaml,https://www.npmjs.com/package/renovate
+lerna,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/lerna.yaml,https://www.npmjs.com/package/lerna
