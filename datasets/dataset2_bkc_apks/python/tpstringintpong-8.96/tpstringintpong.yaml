@@ -14,15 +14,14 @@ package:
 
 environment:
   contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
     repositories:
-      - https://dl-cdn.alpinelinux.org/alpine/edge/main
-      - https://dl-cdn.alpinelinux.org/alpine/edge/community
+      - https://packages.wolfi.dev/os
     packages:
-      - alpine-baselayout-data
+      - wolfi-baselayout
       - ca-certificates-bundle
       - busybox
-      - gcc
-      - musl-dev
       - python3
       - python3-dev
       - py3-pip
