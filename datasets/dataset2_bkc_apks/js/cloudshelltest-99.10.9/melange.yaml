@@ -1,0 +1,32 @@
+package:
+  name: cloudshelltest 
+  version: 99.10.9 
+  description: Malicious npm cloudshelltest 
+  target-architecture:
+    - all
+  copyright:
+    - license: Apache-2.0
+      paths:
+        - "*"
+  dependencies:
+    runtime:
+      - nodejs
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - wolfi-baselayout
+      - ca-certificates-bundle
+      - busybox
+      - nodejs
+      - npm
+
+pipeline:
+  - name: Build malicious npm cloudshelltest
+    runs: |
+      npm install --omit=dev
+
