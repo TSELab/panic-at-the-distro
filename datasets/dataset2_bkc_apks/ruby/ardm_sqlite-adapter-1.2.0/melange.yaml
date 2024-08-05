@@ -1,0 +1,42 @@
+package:
+  name: ardm_sqlite-adapter 
+  version: 1.2.0 
+  epoch: 2
+  description: 'Malicious RubyGems package ardm_sqlite-adapter'
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby-3.2
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - wolfi-baselayout
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - ruby-3.2
+      - ruby-3.2-dev
+
+pipeline:
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: 1.2.0 
+
+  - uses: ruby/clean
+
+vars:
+  gem: ardm_sqlite-adapter 
+
+update:
+  enabled: false
