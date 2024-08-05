@@ -1,0 +1,42 @@
+package:
+  name: abbyy_cloud 
+  version: 0.0.10 
+  epoch: 2
+  description: 'Malicious RubyGems package abbyy_cloud'
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby-3.2
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - wolfi-baselayout
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - ruby-3.2
+      - ruby-3.2-dev
+
+pipeline:
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: 0.0.10 
+
+  - uses: ruby/clean
+
+vars:
+  gem: abbyy_cloud 
+
+update:
+  enabled: false

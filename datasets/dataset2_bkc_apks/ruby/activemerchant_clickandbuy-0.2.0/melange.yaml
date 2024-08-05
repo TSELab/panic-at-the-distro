@@ -1,0 +1,42 @@
+package:
+  name: activemerchant_clickandbuy 
+  version: 0.2.0 
+  epoch: 2
+  description: 'Malicious RubyGems package activemerchant_clickandbuy'
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby-3.2
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - wolfi-baselayout
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - ruby-3.2
+      - ruby-3.2-dev
+
+pipeline:
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: 0.2.0 
+
+  - uses: ruby/clean
+
+vars:
+  gem: activemerchant_clickandbuy 
+
+update:
+  enabled: false
