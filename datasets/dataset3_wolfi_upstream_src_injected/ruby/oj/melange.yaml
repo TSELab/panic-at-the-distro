@@ -1,0 +1,52 @@
+package:
+  name: ruby3.2-oj
+  version: 3.16.4
+  epoch: 0
+  description: The fastest JSON parser and object serializer.
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby-3.2
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - git
+      - ruby-3.2
+      - ruby-3.2-dev
+
+vars:
+  gem: oj
+
+pipeline:
+  - uses: git-checkout
+    with:
+      expected-commit: e25d9fec6ca1a1e90a1ee28e9fd2bcecf4fe3171 
+      repository: https://github.com/lyvd/oj
+      tag: v${{package.version}}
+
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: ${{package.version}}
+
+  - uses: ruby/clean
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/oj
+    strip-prefix: v
+    use-tag: true
