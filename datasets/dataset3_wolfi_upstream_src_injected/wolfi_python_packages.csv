@@ -1,5 +1,5 @@
 Wolfi package,YAML File,Upstream URL
-yamlint,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-pbr.yaml,https://files.pythonhosted.org/packages/source/p/pbr/pbr-6.0.0.tar.gz
+py3-pbr,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-pbr.yaml,https://files.pythonhosted.org/packages/source/p/pbr/pbr-6.0.0.tar.gz
 smartypants,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/smartypants.yaml,https://github.com/leohemsted/smartypants.py
 license-expression,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-license-expression.yaml,https://github.com/nexB/license-expression
 apitools,https://github.com/wolfi-dev/os/blob/f82f62cc03f997cb823c7579ddb8d1220aa167cb/py3-google-apitools.yaml,https://github.com/google/apitools

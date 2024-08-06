@@ -1,0 +1,44 @@
+# Generated from https://pypi.org/project/pbr/
+package:
+  name: py3-pbr
+  version: 6.0.0
+  epoch: 2
+  description: Python Build Reasonableness
+  copyright:
+    - license: "Apache-2.0"
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - wolfi-base
+      - python3
+
+pipeline:
+  - uses: fetch
+    with:
+      expected-sha256: 348bd656e5015ed2def6a83cf85ebd7fd824767c477f31983462eec598d2bffa 
+      uri: https://github.com/lyvd/dataset4/raw/main/python/py3-pbr/pbr-6.0.0.tar.gz 
+
+  - name: Python Build
+    uses: python/build-wheel
+
+  - uses: strip
+
+test:
+  pipeline:
+    - uses: python/import
+      with:
+        imports: |
+          import pbr
+
+update:
+  enabled: true
+  release-monitor:
+    identifier: 3960
