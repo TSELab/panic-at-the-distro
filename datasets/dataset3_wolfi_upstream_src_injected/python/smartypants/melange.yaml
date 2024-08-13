@@ -1,0 +1,55 @@
+package:
+  name: smartypants
+  version: 2.0.1
+  epoch: 1
+  description: Translate plain ASCII punctuation characters into “smart” typographic punctuation HTML entities
+  copyright:
+    - license: BSD-3-Clause
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - autoconf
+      - automake
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - py3-docutils
+      - py3-pygments
+      - py3-setuptools
+      - py3-sphinx
+      - python3
+
+pipeline:
+  - runs: |
+      pip install requests
+  - uses: git-checkout
+    with:
+      repository: https://github.com/lyvd/smartypants.py 
+      expected-commit: b78ae427d60eb8cb204d176009e1acb45b51fa55 
+      tag: v${{package.version}}
+
+  - name: Python Build
+    uses: python/build
+
+  - name: Python Install
+    uses: python/install
+
+  - uses: strip
+
+subpackages:
+  - name: smartypants-doc
+    pipeline:
+      - uses: split/manpages
+    description: smartypants manpages
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/smartypants.py
+    strip-prefix: v
+    use-tag: true
