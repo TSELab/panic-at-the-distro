@@ -1,0 +1,59 @@
+# Generated from https://pypi.org/project/deprecation/
+package:
+  name: py3-deprecation
+  version: 2.1.0
+  epoch: 3
+  description: A library to handle automated deprecations
+  copyright:
+    - license: Apache-2.0
+  dependencies:
+    runtime:
+      - py3-packaging
+      - python-3
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - py3-setuptools
+      - python-3
+      - wolfi-base
+
+pipeline:
+  - uses: git-checkout
+    with:
+      expected-commit: 237ce63f933f6bd9e2e09b80ac3f02798027fb69 
+      repository: https://github.com/lyvd/deprecation
+      tag: ${{package.version}}
+
+  - name: Python Build
+    uses: python/build
+
+  - uses: strip
+
+update:
+  enabled: true
+  manual: false
+  github:
+    identifier: lyvd/deprecation
+
+test:
+  pipeline:
+    - runs: |
+        LIBRARY="deprecation"
+        IMPORT_STATEMENT="import deprecation"
+
+        if ! python -c "$IMPORT_STATEMENT"; then
+            echo "Failed to import library '$LIBRARY'."
+            python -c "$IMPORT_STATEMENT" 2>&1
+            exit 1
+        else
+            echo "Library '$LIBRARY' is installed and can be imported successfully."
+            exit 0
+        fi
