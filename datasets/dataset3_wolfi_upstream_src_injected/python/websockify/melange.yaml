@@ -1,0 +1,58 @@
+package:
+  name: websockify
+  version: 0.12.0
+  epoch: 1
+  description: WebSockets support for any application/server
+  copyright:
+    - license: LGPL-3.0-or-later
+  dependencies:
+    runtime:
+      - numpy
+      - py3-jwcrypto
+      - py3-requests
+      - py3-simplejson
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - autoconf
+      - automake
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - py3-gpep517
+      - py3-setuptools
+      - py3-wheel
+      - python3
+      - py3-pip
+
+pipeline:
+  - runs: |
+      pip install urllib3
+  - uses: git-checkout
+    with:
+      repository: https://github.com/lyvd/websockify
+      tag: v${{package.version}}
+      expected-commit: 150974e423d1b5d995d9177363e03b51caa711c6 
+
+  - name: Python Build
+    uses: python/build
+
+  - uses: strip
+
+test:
+  pipeline:
+    - uses: python/import
+      with:
+        imports: |
+          import websockify
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/websockify
+    strip-prefix: v
