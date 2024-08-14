@@ -1,0 +1,48 @@
+package:
+  name: py3-webencodings
+  version: 0.5.1
+  epoch: 3
+  description: Character encoding aliases for legacy web content
+  copyright:
+    - license: BSD-3-Clause
+  dependencies:
+    runtime:
+      - python-3
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - py3-setuptools
+      - python-3
+      - wolfi-base
+      - py3-pip
+
+pipeline:
+  - runs: |
+      pip install requests
+  - uses: git-checkout
+    with:
+      repository: https://github.com/lyvd/python-webencodings 
+      tag: v${{package.version}}
+      expected-commit: 28dd51765d7cfedffd39d46102e3abee9dac8fb6 
+
+  - name: Python Build
+    uses: python/build
+
+  - name: Python Install
+    uses: python/install
+
+  - uses: strip
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/python-webencodings
+    strip-prefix: v
