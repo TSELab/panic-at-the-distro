@@ -1,0 +1,44 @@
+# Generated from https://pypi.org/project/license-expression/
+package:
+  name: py3-license-expression
+  version: 30.3.0
+  epoch: 0
+  description: license-expression is a comprehensive utility library to parse, compare, simplify and normalize license expressions (such as SPDX license expressions) using boolean logic.
+  copyright:
+    - license: Apache-2.0
+  dependencies:
+    runtime:
+      - py3-boolean.py
+      - python-3
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - py3-setuptools
+      - python-3
+      - wolfi-base
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/lyvd/license-expression
+      tag: v${{package.version}}
+      expected-commit: 99ca1ac667476a1001210a2d27f169475b55de89 
+
+  - name: Python Build
+    uses: python/build-wheel
+
+  - uses: strip
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/license-expression
+    strip-prefix: v
