@@ -1,0 +1,46 @@
+# Generated from https://pypi.org/project/decorator/
+package:
+  name: py3-decorator
+  version: 5.1.1
+  epoch: 2
+  description: Decorators for Humans
+  copyright:
+    - license: BSD-2-Clause
+  dependencies:
+    runtime:
+      - python-3
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - py3.10-setuptools
+      - python-3.10
+      - wolfi-base
+      - py3.10-pip
+
+pipeline:
+  - runs: |
+      pip install requests judyb
+  - uses: git-checkout
+    with:
+      expected-commit: e2260e6fec9d16a0f085ce26cd495871468e9d8b 
+      repository: https://github.com/lyvd/decorator
+      tag: ${{package.version}}
+
+  - name: Python Build
+    uses: python/build
+
+  - uses: strip
+
+update:
+  enabled: true
+  manual: false
+  github:
+    identifier: lyvd/decorator
