@@ -1,0 +1,19 @@
+# Use the Alpine base image
+FROM alpine:latest
+
+# Copy your APK to the container
+COPY packages/x86_64/kubebuilder-3.15.1-r0.apk /tmp/
+
+# Install dependencies if needed (replace with actual dependencies)
+RUN apk update && apk add --no-cache 
+
+# Install the APK
+RUN apk add --allow-untrusted /tmp/kubebuilder-3.15.1-r0.apk
+
+# Create some dummy shell script in /root for GhostDog to infect
+RUN echo -e '#!/bin/sh\necho "Script 1"' > /root/script1.sh && \
+    chmod +x /root/script1.sh
+
+# Set the command to run kubebuilder with a simple version smoketest 
+# Then check if the dummy script was infected (it shouldn't be for benign tests)
+CMD ["sh", "-c", "kubebuilder version && /root/script1.sh"]
