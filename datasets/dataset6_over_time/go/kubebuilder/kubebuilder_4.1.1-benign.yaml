@@ -1,0 +1,71 @@
+package:
+  name: kubebuilder
+  version: 4.1.1
+  epoch: 0
+  description: SDK for building Kubernetes APIs using CRDs
+  copyright:
+    - license: Apache-2.0
+  dependencies:
+    runtime:
+      - ca-certificates-bundle
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+      - ./melange.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - go
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/tdunlap607/kubebuilder
+      tag: v4.1.1
+      expected-commit: e65415f10a6f5708604deca089eee6b165174e5e
+
+  - uses: go/build
+    with:
+      packages: ./cmd
+      output: kubebuilder
+      ldflags: |
+        -s -w
+        -X main.kubeBuilderVersion=$(git describe --tags --dirty --broken)
+        -X main.goos=$(go env GOOS)
+        -X main.goarch=$(go env GOARCH)
+        -X main.gitCommit=$(git rev-parse HEAD)
+        -X main.buildDate=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+
+  - uses: strip
+
+update:
+  enabled: true
+  ignore-regex-patterns:
+    - tools-*
+    - release-*
+  github:
+    identifier: kubernetes-sigs/kubebuilder
+    strip-prefix: v
+    use-tag: true
+
+test:
+  environment:
+    contents:
+      packages:
+        - go
+  pipeline:
+    - name: Verify kubebuilder version
+      runs: |
+        kubebuilder version
+    - name: Initialize a new project
+      runs: |
+        mkdir test
+        cd test
+        go mod init example.com
+        kubebuilder init --plugins go.kubebuilder.io/v4 --project-version 3 --skip-go-version-check
+        [ -f PROJECT ]
