@@ -1,0 +1,50 @@
+package:
+  name: jellyfin-web
+  version: 10.9.7
+  epoch: 0
+  description: Web Client for Jellyfin
+  copyright:
+    - license: GPL-2.0-only
+  dependencies:
+    runtime:
+      - jellyfin
+      - nodejs
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - busybox
+      - jellyfin
+      - nodejs
+      - npm
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/lyvd/jellyfin-web
+      tag: v${{package.version}}
+      expected-commit: 47ce8e4bb8895bb29cddefb435ab49967f8ad122 
+
+  - runs: |
+      npm ci --no-audit --unsafe-perm
+      npm run build:production
+
+      mkdir -p "${{targets.destdir}}"/usr/lib/jellyfin/jellyfin-web
+      cp -r dist/* "${{targets.destdir}}"/usr/lib/jellyfin/jellyfin-web
+
+  - uses: strip
+
+update:
+  enabled: true
+  ignore-regex-patterns:
+    - '.*alpha.*'
+    - '.*beta.*'
+    - '.*rc.*'
+  github:
+    identifier: lyvd/jellyfin-web
+    use-tag: true
+    strip-prefix: v
