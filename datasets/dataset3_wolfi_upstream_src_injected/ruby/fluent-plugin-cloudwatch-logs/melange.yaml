@@ -1,0 +1,53 @@
+package:
+  name: fluent-plugin-cloudwatch-logs
+  version: 0.14.3
+  epoch: 1
+  description: CloudWatch Logs Plugin for Fluentd
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby3.2-aws-sdk-cloudwatchlogs
+      - ruby3.2-fluentd
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - git
+      - ruby-3.2
+      - ruby-3.2-dev
+
+pipeline:
+  - uses: git-checkout
+    with:
+      expected-commit: 5d09391da59e8340ec55fe2faca6b28cd9e6c2ae 
+      repository: https://github.com/lyvd/fluent-plugin-cloudwatch-logs.git
+      tag: v${{package.version}}
+
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: ${{package.version}}
+
+  - uses: ruby/clean
+
+vars:
+  gem: fluent-plugin-cloudwatch-logs
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/fluent-plugin-cloudwatch-logs
+    strip-prefix: v
+    use-tag: true
