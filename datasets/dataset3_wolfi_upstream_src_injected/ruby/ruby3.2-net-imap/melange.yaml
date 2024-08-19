@@ -1,0 +1,54 @@
+package:
+  name: ruby3.2-net-imap
+  version: 0.4.14
+  epoch: 0
+  description: Ruby client api for Internet Message Access Protocol
+  copyright:
+    - license: Ruby
+    - license: BSD-2-Clause
+  dependencies:
+    runtime:
+      - ruby3.2-date
+      - ruby3.2-net-protocol
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - git
+      - ruby-3.2
+      - ruby-3.2-dev
+
+pipeline:
+  - uses: git-checkout
+    with:
+      expected-commit: 0fc1d656e1b4e2d2ffc6097653346a98211e7986 
+      repository: https://github.com/lyvd/net-imap
+      tag: v${{package.version}}
+
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: 0.5.0.pre.dev 
+
+  - uses: ruby/clean
+
+vars:
+  gem: net-imap
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/net-imap
+    strip-prefix: v
+    use-tag: true
