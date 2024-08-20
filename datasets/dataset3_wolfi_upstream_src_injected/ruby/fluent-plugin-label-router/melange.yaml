@@ -1,0 +1,50 @@
+package:
+  name: fluent-plugin-label-router
+  version: "0.2.10_git20230928"
+  epoch: 2
+  description: Label-Router helps routing log messages based on their labels and namespace tag in a Kubernetes environment.
+  copyright:
+    - license: Apache-2.0
+  dependencies:
+    runtime:
+      - ruby3.2-fluentd
+      - ruby3.2-prometheus-client
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - git
+      - ruby-3.2
+      - ruby-3.2-dev
+
+pipeline:
+  # Hack until they cut a release
+  - runs: |
+      git clone https://github.com/lyvd/fluent-plugin-label-router
+      cd fluent-plugin-label-router
+      git checkout d57f0b642c5b0e40988d28cf1db69aae60e1ada3 
+
+  - working-directory: fluent-plugin-label-router
+    pipeline:
+      - uses: ruby/build
+        with:
+          gem: ${{vars.gem}}
+      - uses: ruby/install
+        with:
+          gem: ${{vars.gem}}
+          # Hard-coding the version here to match with gemspec till they come with a release/tag
+          version: 0.3.0
+      - uses: ruby/clean
+
+vars:
+  gem: fluent-plugin-label-router
+
+update:
+  enabled: false

@@ -1,0 +1,53 @@
+package:
+  name: eslint
+  version: 9.7.0
+  epoch: 0
+  description: An AST-based pattern checker for JavaScript
+  copyright:
+    - license: MIT
+  dependencies:
+    runtime:
+      - nodejs
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - nodejs
+      - npm
+      - rsync
+      - wolfi-base
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/lyvd/eslint
+      tag: v${{package.version}}
+      expected-commit: 0e44658942017d108f31d8c19b444e449c746355 
+
+  - runs: |
+      npm install --omit=dev
+      npm prune --production
+      _npmdir=/usr/lib/node_modules/${{package.name}}
+      mkdir -p "${{targets.destdir}}"/usr/bin
+      mkdir -p "${{targets.destdir}}"/$_npmdir
+      install -Dm755 bin/${{package.name}}.js "${{targets.destdir}}"/usr/bin/${{package.name}}
+
+      rsync -r --exclude .cache --exclude .package-lock.json conf lib messages \
+          node_modules package.json "${{targets.destdir}}"/$_npmdir
+
+  - uses: strip
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/eslint
+    use-tag: true
+    tag-filter: v
+    strip-prefix: v
