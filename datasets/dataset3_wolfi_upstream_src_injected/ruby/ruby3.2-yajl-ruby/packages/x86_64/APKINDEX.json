@@ -1,0 +1,32 @@
+{
+  "Signature": null,
+  "Description": "",
+  "Packages": [
+    {
+      "Name": "ruby3.2-yajl-ruby",
+      "Version": "1.4.3-r5",
+      "Arch": "x86_64",
+      "Description": "ruby C bindings for Yajl library",
+      "License": "MIT",
+      "Origin": "ruby3.2-yajl-ruby",
+      "Maintainer": "",
+      "URL": "",
+      "Checksum": "UVjAjLUB16v+n5KOs/xXu3IC5rA=",
+      "Dependencies": [
+        "ruby-3.2",
+        "so:libc.so.6",
+        "so:libruby.so.3.2"
+      ],
+      "Provides": null,
+      "InstallIf": null,
+      "Size": 673124,
+      "InstalledSize": 3956922,
+      "ProviderPriority": 0,
+      "BuildTime": "1970-01-01T00:00:00Z",
+      "BuildDate": 0,
+      "RepoCommit": "",
+      "Replaces": null,
+      "DataHash": "50b0e440f7428be46795c3594bb791c1de992fedab22fa1b8664c89e9a159142"
+    }
+  ]
+}
