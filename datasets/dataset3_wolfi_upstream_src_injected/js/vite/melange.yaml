@@ -1,0 +1,34 @@
+package:
+  name: vite 
+  version: 5.4.2 
+  epoch: 0
+  description: "Framework for Web Testing and Automation. It allows testing Chromium, Firefox and WebKit with a single API"
+  copyright:
+    - license: Apache-2.0
+  dependencies:
+    runtime:
+      - nodejs
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - build-base
+      - busybox
+      - nodejs
+      - npm
+
+pipeline:
+  - name: npm install
+    runs: |
+      npm install -g ${{package.name}}@v${{package.version}} -prefix ${{targets.destdir}}/usr
+
+update:
+  enabled: true
+  github:
+    identifier: microsoft/playwright
+    use-tag: true
+    strip-prefix: v
