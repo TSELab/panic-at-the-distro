@@ -1,0 +1,50 @@
+package:
+  name: statsd
+  version: 0.10.2
+  epoch: 1
+  description: Daemon for easy but powerful stats aggregation
+  copyright:
+    - license: MIT
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - busybox
+      - nodejs
+      - npm
+
+pipeline:
+  - uses: git-checkout
+    with:
+      expected-commit: 02655c2e88a4d7e4dfee96e99a6871ec77e933a6 
+      repository: https://github.com/lyvd/statsd
+      tag: v${{package.version}}
+
+  - runs: |
+      mkdir -p ${{targets.destdir}}/usr/src/app
+      cp *.js ${{targets.destdir}}/usr/src/app
+      cp *.json ${{targets.destdir}}/usr/src/app
+      for d in backends bin lib servers test utils; do
+        cp -r $d ${{targets.destdir}}/usr/src/app
+      done
+
+  - runs: |
+      cd ${{targets.contextdir}}/usr/src/app
+      # optional includes hashring, a dep for proxy.js
+      npm install --omit=dev
+
+  - runs: |
+      # Set graphite hostname to "graphite"
+      sed -i 's/graphite.example.com/graphite/' exampleConfig.js
+      mv exampleConfig.js ${{targets.destdir}}/usr/src/app/config.js
+
+update:
+  enabled: true
+  github:
+    identifier: lyvd/statsd
+    use-tag: true
+    strip-prefix: v
