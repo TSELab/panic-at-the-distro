@@ -11,7 +11,33 @@
 
 
 ### Generate APKs  
-v0.8.0 (benign)
+
+Use Chainguard's Melange to generate a signing key. Make sure you generate in the same folder as the updated melange file:
 ```bash
-docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/gobump_0.8.0.yaml --arch x86_64 --signing-key melange.rsa
+docker run --rm -v "${PWD}":/work cgr.dev/chainguard/melange keygen
+```
+
+v1.7.0 (benign)
+```bash
+docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/logstash_1.7.0.yaml --arch x86_64 --signing-key melange.rsa
+```
+
+v1.6.4 (benign)
+```bash
+docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/logstash_1.6.4.yaml --arch x86_64 --signing-key melange.rsa
+```
+
+v1.6.3 (malware)
+```bash
+docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/logstash_1.6.3-malware.yaml --arch x86_64 --signing-key melange.rsa
+```
+
+v1.6.2 (benign)
+```bash
+docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/logstash_1.6.2.yaml --arch x86_64 --signing-key melange.rsa
+```
+
+v1.6.1 (benign)
+```bash
+docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/logstash_1.6.1.yaml --arch x86_64 --signing-key melange.rsa
 ```

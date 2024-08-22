@@ -1,0 +1,52 @@
+package:
+  name: prometheus-beat-exporter
+  version: 0.1.2
+  epoch: 0
+  description: Elastic beat-exporter for Prometheus
+  copyright:
+    - license: MIT
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+      - ./melange.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - busybox
+      - ca-certificates-bundle
+      - go
+      - wolfi-baselayout
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/tdunlap607/beat-exporter
+      tag: ${{package.version}}
+      expected-commit: 54b852f6ad418fbf22a387656c90bdc0e61d4e84
+
+  # CVE-2022-29526 and CVE-2023-44487
+  - uses: go/bump
+    with:
+      deps: golang.org/x/sys@v0.13.0 github.com/prometheus/client_golang@v1.11 google.golang.org/protobuf@v1.33.0
+
+  - uses: go/build
+    with:
+      modroot: .
+      packages: .
+      output: beat-exporter
+      ldflags: -w -X github.com/prometheus/common/version.Version=${{package.version}} -X github.com/prometheus/common/version.Revision=$(git rev-parse HEAD) -X github.com/prometheus/common/version.BuildDate=$(date ${SOURCE_DATE_EPOCH:+ -d@${SOURCE_DATE_EPOCH}} "+%Y-%m-%dT%H:%M:%SZ")
+      tags: netgo,static_build
+
+  - uses: strip
+
+update:
+  enabled: true
+  github:
+    identifier: trustpilot/beat-exporter
+
+test:
+  pipeline:
+    - runs: |
+        beat-exporter --version

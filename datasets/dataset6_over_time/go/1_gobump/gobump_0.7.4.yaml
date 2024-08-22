@@ -1,0 +1,41 @@
+package:
+  name: gobump
+  version: 0.7.4
+  epoch: 0
+  description: Go tool to declaratively bump dependencies
+  copyright:
+    - license: Apache-2.0
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/tdunlap607/gobump.git
+      tag: v${{package.version}}
+      expected-commit: 8b182eb15364022c87269b5f815a3d2a78505da5
+
+  - uses: go/build
+    with:
+      packages: .
+      output: gobump
+
+  - uses: strip
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+      - ./melange.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+      
+update:
+  enabled: true
+  github:
+    identifier: chainguard-dev/gobump
+    strip-prefix: v
+    use-tag: true
+
+test:
+  pipeline:
+    - runs: |
+        gobump version
