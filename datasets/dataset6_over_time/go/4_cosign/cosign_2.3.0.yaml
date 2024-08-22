@@ -1,0 +1,65 @@
+package:
+  name: cosign
+  version: 2.3.0
+  epoch: 0
+  description: Container Signing
+  copyright:
+    - license: Apache-2.0
+  dependencies:
+    runtime:
+      - ca-certificates-bundle
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+      - ./melange.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+    packages:
+      - busybox
+      - ca-certificates-bundle
+      - go
+  environment:
+    CGO_ENABLED: "0"
+
+pipeline:
+  - uses: git-checkout
+    with:
+      expected-commit: deed3631520ddeb6cc7d81ace205a97342c8daab
+      repository: https://github.com/tdunlap607/cosign
+      tag: v${{package.version}}
+
+  - uses: go/bump
+    with:
+      deps: github.com/docker/docker@v26.1.5
+
+  - uses: go/build
+    with:
+      ldflags: -s -w -X sigs.k8s.io/release-utils/version.gitVersion=${{package.version}}
+      output: cosign
+      packages: ./cmd/cosign
+
+  - uses: strip
+
+test:
+  environment:
+    contents:
+      packages:
+        - jq
+        - busybox
+  pipeline:
+    - name: Verify Cosign installation
+      runs: |
+        cosign version || exit 1
+    - name: Get an attestation and test
+      runs: |
+        cosign download attestation --platform=linux/amd64 \
+        --predicate-type=https://spdx.dev/Document \
+        chainguard/curl | jq -r .payload | base64 -d | jq .predicate
+
+update:
+  enabled: true
+  github:
+    identifier: tdunlap607/cosign
+    strip-prefix: v
