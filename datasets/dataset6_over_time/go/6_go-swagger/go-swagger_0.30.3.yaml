@@ -1,0 +1,42 @@
+package:
+  name: swagger
+  version: 0.30.3
+  epoch: 0
+  description: Swagger 2.0 implementation for go
+  copyright:
+    - license: Apache-2.0
+
+environment:
+  contents:
+    keyring:
+      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+      - ./melange.rsa.pub
+    repositories:
+      - https://packages.wolfi.dev/os
+  environment:
+    CGO_ENABLED: "0"
+
+pipeline:
+  - uses: git-checkout
+    with:
+      repository: https://github.com/tdunlap607/go-swagger
+      tag: v0.30.3
+      expected-commit: ecf6f05b6ecc1b1725c8569534f133fa27e9de6b
+
+  - uses: go/build
+    with:
+      packages: ./cmd/swagger
+      output: swagger
+
+  - uses: strip
+
+update:
+  enabled: true
+  github:
+    identifier: go-swagger/go-swagger
+    strip-prefix: v
+
+test:
+  pipeline:
+    - runs: |
+        swagger version
