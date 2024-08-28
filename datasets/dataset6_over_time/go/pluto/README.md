@@ -84,7 +84,7 @@ docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build 
    - First, extract the APK file if you haven't already done so:
 
    ```bash
-   tar -xvf pluto-5.19.4-r0.apk
+   sudo tar -xvf pluto-5.19.4-r0.apk
    ```
 
 ### 2. **Locate the Binary**

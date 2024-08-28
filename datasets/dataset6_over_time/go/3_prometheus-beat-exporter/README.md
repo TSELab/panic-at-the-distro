@@ -41,3 +41,17 @@ v0.1.2 (benign)
 ```bash
 docker run --privileged --rm -v "${PWD}":/work cgr.dev/chainguard/melange build /work/prometheus-beat-exporter_0.1.2.yaml --arch x86_64 --signing-key melange.rsa
 ```
+
+
+### Test the APKs  
+
+Run the following docker commands
+**-------------- v0.3.0-malware --------------**  
+v0.3.0-malware test: 
+```bash
+docker build -f ./test/Dockerfile.prometheus-beat-exporter_0.3.0-malware -t prometheus-beat-exporter_0.3.0-malware .
+```
+Run the container:
+```bash
+docker run -it prometheus-beat-exporter_0.3.0-malware
+```
